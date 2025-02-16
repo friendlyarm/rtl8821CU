@@ -22,6 +22,10 @@
 #define LINUX_VERSION_CODE CPTCFG_KERNEL_CODE
 #endif
 
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)) && (LINUX_VERSION_CODE < KERNEL_VERSION(6, 9, 0))
+#define CFG80211_HAS_PUNCT_BITMAP 1
+#endif
+
 #ifdef CONFIG_IOCTL_CFG80211
 
 #ifndef DBG_RTW_CFG80211_STA_PARAM
@@ -422,7 +426,7 @@ u8 rtw_cfg80211_ch_switch_notify(_adapter *adapter, u8 ch, u8 bw, u8 offset, u8 
 	if (ret != _SUCCESS)
 		goto exit;
 
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)) || defined(CFG80211_HAS_PUNCT_BITMAP)
+#if defined(CFG80211_HAS_PUNCT_BITMAP)
 	cfg80211_ch_switch_notify(adapter->pnetdev, &chdef, 0, 0);
 #elif (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 19, 2))
 	cfg80211_ch_switch_notify(adapter->pnetdev, &chdef, 0);
