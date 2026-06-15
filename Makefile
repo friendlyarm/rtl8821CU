@@ -12,6 +12,11 @@ ccflags-y += -Wno-vla -g
 ccflags-y += -Wno-implicit-fallthrough
 ccflags-y += -Wno-missing-prototypes
 ccflags-y += -Wno-missing-declarations
+ccflags-y += -Wno-address
+ccflags-y += -Wno-empty-body
+ccflags-y += -Wno-enum-conversion
+ccflags-y += -Wno-restrict
+ccflags-y += -Wno-vla-larger-than
 
 GCC_VER_49 := $(shell echo `$(CC) -dumpversion | cut -f1-2 -d.` \>= 4.9 | bc )
 ifeq ($(GCC_VER_49),1)
