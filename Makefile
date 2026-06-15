@@ -2269,6 +2269,11 @@ ifeq ($(CONFIG_RTL8723B), y)
 $(MODULE_NAME)-$(CONFIG_MP_INCLUDED)+= core/rtw_bt_mp.o
 endif
 
+# Workaround for 6.15+
+# e966ad0edd00 ("kbuild: remove EXTRA_*FLAGS support")
+ccflags-y = $(EXTRA_CFLAGS)
+ldflags-y = $(EXTRA_LDFLAGS)
+
 obj-$(CONFIG_RTL8821CU) := $(MODULE_NAME).o
 
 else
