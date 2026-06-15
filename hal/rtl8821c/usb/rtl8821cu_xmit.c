@@ -876,7 +876,7 @@ static s32 rtl8821cu_xmitframe_complete(PADAPTER padapter, struct xmit_priv *pxm
 }
 #endif
 
-static void rtl8821cu_xmit_tasklet(void *priv)
+static void rtl8821cu_xmit_tasklet(unsigned long priv)
 {
 	int ret = _FALSE;
 	_adapter *padapter = (_adapter *)priv;
